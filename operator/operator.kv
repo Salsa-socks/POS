@@ -1,0 +1,166 @@
+<FlatButton@ButtonBehavior+Label>:
+    font_size: 14
+
+<OperatorWindow>:
+    id: main_win
+    orientation: 'vertical'
+    font_name: '../includes/font/OpenSans-Regular.ttf'
+    canvas.before:
+        Color:
+            rgba: (1,1,1,1)
+        Rectangle:
+            size: self.size
+            pos: self.pos
+
+    BoxLayout:
+        id: header
+        size_hint_y: None
+        height: 40
+        font_name: '../includes/font/OpenSans-Regular.ttf'
+        canvas.before:
+            Color:
+                rgba: (1, 0.51, 0.239,1)
+            Rectangle:
+                size: self.size
+                pos: self.pos
+        Label:
+            text: 'POS Mainscreen'
+            size_hint_x: .9
+            bold: True
+            color: (1,1,1,1)
+            font_size: dp(20)
+        FlatButton:
+            id: loggedin_user
+            text: 'jdoe'
+            font_name: '../includes/font/OpenSans-Regular.ttf'
+            color: (1,1,1,1)
+
+    BoxLayout:
+        id: current
+        size_hint_y: None
+        height: 50
+        font_name: '../includes/font/OpenSans-Regular.ttf'
+        canvas.before:
+            Color:
+                rgba: (1, 0.51, 0.239,1)
+            Rectangle:
+                size: self.size
+                pos: self.pos
+        Button:
+            text: 'Current Item'
+            background_color: (0.89, 0.51, 0.239,1)
+            background_normal: ""
+            size_hint_x: 0.4
+        Button:
+            id: curr_product
+            text: 'Default Product'
+            background_color: (0.91, 0.41, 0.27,1)
+            background_normal: ""
+        Button:
+            id: curr_price
+            text: '0.00'
+            background_color: (0.98, 0.65, 0.47, 1)
+            background_normal: ""
+            size_hint_x: 0.2
+
+    BoxLayout:
+        padding: 10
+        BoxLayout:
+            id: product_details
+            orientation: 'vertical'
+            size_hint_x: .8
+            spacing: 10
+            BoxLayout:
+                id: product_labels
+                size_hint_y: None
+                height: 40
+                canvas.before:
+                    Color:
+                        rgba: (1, 0.51, 0.239,1)
+                    Rectangle:
+                        size: self.size
+                        pos: self.pos
+                FlatButton:
+                    text: 'Qty'
+                    size_hint_x: .1
+                FlatButton:
+                    text: 'Product COde'
+                    size_hint_x: .3
+                FlatButton:
+                    text: 'Disc'
+                    size_hint_x: .1
+                FlatButton:
+                    text: 'Disc %'
+                    size_hint_x: .1
+                FlatButton:
+                    text: 'VAT'
+                    size_hint_x: .1
+                FlatButton:
+                    text: 'Price'
+                    size_hint_x: .1
+                FlatButton:
+                    text: 'Product Total'
+                    size_hint_x: .2
+            BoxLayout:
+                id: product_inputs
+                size_hint_y: None
+                height: 30
+                spacing: 5
+                TextInput:
+                    id: qty_inp
+                    size_hint_x: .1
+                TextInput:
+                    id: code_inp
+                    size_hint_x: .3
+                TextInput:
+                    id: disc_inp
+                    size_hint_x: .1
+                TextInput:
+                    id: disc_perc
+                    size_hint_x: .1
+                TextInput:
+                    id: vat_inp
+                    size_hint_x: .1
+                TextInput:
+                    id: price_inp
+                    size_hint_x: .1
+                TextInput:
+                    id: total_inp
+                    size_hint_x: .2
+
+            BoxLayout:
+                id: add_to_cart
+                orientation: 'vertical'
+                BoxLayout:
+                    size_hint_y: None
+                    height: 30
+                    canvas.before:
+                        Color:
+                            rgba: (0.91, 0.51, 0.43, 1)
+                        Rectangle:
+                            size: self.size
+                            pos: self.pos
+                    Label:
+                        text: 'Code'
+                        size_hint_x: .3
+                    Label:
+                        text: 'Product Name'
+                        size_hint_x: .3
+                    Label:
+                        text: 'Quantity'
+                        size_hint_x: .1
+                    Label:
+                        text: 'Discount'
+                        size_hint_x: .1
+                    Label:
+                        text: 'Price'
+                        size_hint_x: .1
+                    Label:
+                        text: 'Product Total'
+                        size_hint_x: .1
+            BoxLayout:
+                id: product
+        BoxLayout:
+            id: preview
+            orientation: 'vertical'
+            size_hint_x: .2
