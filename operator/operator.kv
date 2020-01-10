@@ -144,7 +144,7 @@
                             pos: self.pos
                     Label:
                         text: 'Code'
-                        size_hint_x: .3
+                        size_hint_x: .2
                     Label:
                         text: 'Product Name'
                         size_hint_x: .3
@@ -159,7 +159,7 @@
                         size_hint_x: .1
                     Label:
                         text: 'Product Total'
-                        size_hint_x: .1
+                        size_hint_x: .2
                 GridLayout:
                     id: products
                     cols: 1
@@ -167,3 +167,8 @@
             id: preview
             orientation: 'vertical'
             size_hint_x: .2
+
+            TextInput:
+                id: receipt_preview
+                readonly: True
+                text: 'The Shop Name\n123 Street rd\nArea, Place\n\nTel: (000)-123-4567\nReceipt No: \nDate \n\n'

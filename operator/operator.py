@@ -32,6 +32,18 @@ class OperatorWindow(BoxLayout):
             details.add_widget(disc)
             details.add_widget(price)
             details.add_widget(total)
+            
+            # update Preview
+            pname = self.ids.code_inp.text
+            pprice = f'R{self.ids.price_inp.text}'
+            preview = self.ids.receipt_preview
+            prev_text = preview.text
+            _prev = prev_text.find('`')
+            if _prev > 0:
+                prev_text = prev_text[:_prev]
+            purchase_total = '`\n\nTotal\t\t\t\t0.00'
+            new_preview = '\n'.join([prev_text, pname+'\t\t\t\t'+str(pprice),purchase_total])
+            preview.text = new_preview
 
 class OperatorApp(App):
         def build(self):
