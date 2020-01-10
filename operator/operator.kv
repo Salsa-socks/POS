@@ -84,7 +84,7 @@
                     text: 'Qty'
                     size_hint_x: .1
                 FlatButton:
-                    text: 'Product COde'
+                    text: 'Product Code'
                     size_hint_x: .3
                 FlatButton:
                     text: 'Disc'
@@ -112,6 +112,8 @@
                 TextInput:
                     id: code_inp
                     size_hint_x: .3
+                    multiline: False
+                    on_text_validate: root.update_purchases()
                 TextInput:
                     id: disc_inp
                     size_hint_x: .1
@@ -158,8 +160,9 @@
                     Label:
                         text: 'Product Total'
                         size_hint_x: .1
-            BoxLayout:
-                id: product
+                GridLayout:
+                    id: products
+                    cols: 1
         BoxLayout:
             id: preview
             orientation: 'vertical'
