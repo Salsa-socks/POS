@@ -4,7 +4,6 @@
 <OperatorWindow>:
     id: main_win
     orientation: 'vertical'
-    font_name: '../includes/font/OpenSans-Regular.ttf'
     canvas.before:
         Color:
             rgba: (1,1,1,1)
@@ -16,7 +15,6 @@
         id: header
         size_hint_y: None
         height: 40
-        font_name: '../includes/font/OpenSans-Regular.ttf'
         canvas.before:
             Color:
                 rgba: (1, 0.51, 0.239,1)
@@ -31,15 +29,13 @@
             font_size: dp(20)
         FlatButton:
             id: loggedin_user
-            text: 'jdoe'
-            font_name: '../includes/font/OpenSans-Regular.ttf'
+            text: 'User name'
             color: (1,1,1,1)
 
     BoxLayout:
         id: current
         size_hint_y: None
         height: 50
-        font_name: '../includes/font/OpenSans-Regular.ttf'
         canvas.before:
             Color:
                 rgba: (1, 0.51, 0.239,1)
@@ -178,3 +174,16 @@
                 id: receipt_preview
                 readonly: True
                 text: 'The Shop Name\n123 Street rd\nArea, Place\n\nTel: (000)-123-4567\nReceipt No: \nDate \n\n'
+
+    BoxLayout:
+        id: footer
+        size_hint_y: None
+        height: 30
+        canvas.before:
+            Color:
+                rgba: (0.91, 0.51, 0.43, 1)
+            Rectangle:
+                pos: self.pos
+                size: self.size
+        Label:
+            text: 'Kivy App test - bnkosi'

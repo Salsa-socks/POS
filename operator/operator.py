@@ -9,6 +9,7 @@ class OperatorWindow(BoxLayout):
         
         self.cart = [] #contains all items selected
         self.qty = []
+        self.total = 0.00
         
     def update_purchases(self):
         pcode = self.ids.code_inp.text
@@ -43,9 +44,12 @@ class OperatorWindow(BoxLayout):
                 pname = 'Product Two'
             pprice = 1.00
             pqty = str(1)
+            self.total += pprice
             preview = self.ids.receipt_preview
             prev_text = preview.text
-            purchase_total = '`\n\nTotal\t\t\t\t0.00'
+            purchase_total = '`\n\nTotal\t\t\t\t' + str(self.total)
+            self.ids.curr_product.text = pname
+            self.ids.curr_price.text = str(pprice)
             _prev = prev_text.find('`')
             if _prev > 0:
                 prev_text = prev_text[:_prev]           
@@ -61,7 +65,7 @@ class OperatorWindow(BoxLayout):
                 expr = '%s\t\tX\d\t'%(pname)
                 rexpr = pname+'\t\tX'+str(pqty)+'\t'
                 new_text = re.sub(expr, rexpr, prev_text)
-                preview.text = new_text
+                preview.text = new_text + purchase_total
             else:
                 self.cart.append(pcode)
                 self.qty.append(1)
