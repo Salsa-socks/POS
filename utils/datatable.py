@@ -1,50 +1,39 @@
 from kivy.app import App
 from kivy.uix.label import Label
 from kivy.uix.boxlayout import BoxLayout
-from collections import OrderedDict
 from pymongo import MongoClient
+from collections import OrderedDict
+from kivy.lang import Builder
 
-class AdminWindow(BoxLayout):
+Builder.load_string('''
+<DataTable>:
+    id: main_win
+    RecycleView:
+        viewclass: 'Label'
+        id: table_floor
+        RecycleGridLayout:
+            cols: 5
+            default_size: (None, 250)
+            default_size_hint: (1, None)
+            size_hint_y: None
+            height: self.minimum_height
+            spacing: 5
+''')
+class DataTable(BoxLayout):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         
-        print(self.get_products())
-
-    def get_users(self): 
-        client = MongoClient()
-        db = client.silverpos
-        users = db.users
-        _users = OrderedDict(
-            first_names = {},
-            last_names = {},
-            user_names = {},
-            passwords = {},
-            designations = {}
-        )
-        first_names = []
-        last_names = []
-        user_names = []
-        passwords = []
-        designations = []
+        products = self.get_products()
         
-        for user in users.find():
-            first_names.append(user['first_name'])
-            last_names.append(user['last_name'])
-            user_names.append(user['user_name'])
-            passwords.append(user['password'])
-            designations.append(user['designation'])
-        users_len = len(first_names)
-        idx = 0
-        while idx < users_len:
-            _users['first_names'][idx] = first_names[idx]
-            _users['last_names'][idx] = last_names[idx]
-            _users['user_names'][idx] = user_names[idx]
-            _users['passwords'][idx] = passwords[idx]
-            _users['designations'][idx] = designations[idx]
-            idx += 1
-            
-        return _users
-
+        col_titles = [k for k in products.keys()]
+        rows_len = len(products[col_titles[0]])
+        print(col_titles)
+        print(rows_len)
+        table_data = []
+        for t in col_titles:
+            table_data.append({'text': str(t)})
+        self.ids.table_floor.data = table_data
+        
     def get_products(self): 
         client = MongoClient()
         db = client.silverpos
@@ -88,10 +77,10 @@ class AdminWindow(BoxLayout):
             idx += 1
             
         return _stocks
-
-class AdminApp(App):
+        
+class DataTableApp(App):
     def build(self):
-        return AdminWindow()
+        return DataTable()
     
 if __name__ == '__main__':
-    AdminApp().run()
+    DataTableApp().run()
