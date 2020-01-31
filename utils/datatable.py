@@ -19,12 +19,11 @@ Builder.load_string('''
             height: self.minimum_height
             spacing: 5
 ''')
+this doesnt work :(
 class DataTable(BoxLayout):
     def __init__(self, **kwargs):
-        super().__init__(**kwargs)
-        
+        super().__init__(**kwargs)      
         products = self.get_products()
-        
         col_titles = [k for k in products.keys()]
         rows_len = len(products[col_titles[0]])
         print(col_titles)
