@@ -12,6 +12,7 @@ Builder.load_string('''
         viewclass: 'Label'
         id: table_floor
         RecycleGridLayout:
+            id: table_floor_layout
             cols: 5
             default_size: (None, 250)
             default_size_hint: (1, None)
@@ -19,18 +20,19 @@ Builder.load_string('''
             height: self.minimum_height
             spacing: 5
 ''')
-this doesnt work :(
 class DataTable(BoxLayout):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)      
         products = self.get_products()
         col_titles = [k for k in products.keys()]
         rows_len = len(products[col_titles[0]])
-        print(col_titles)
-        print(rows_len)
+        self.columns = (len(col_titles))
+        # print(rows_len)
         table_data = []
         for t in col_titles:
             table_data.append({'text': str(t)})
+        for r in range(rows_len):
+        self.ids.table_floor_layout.cols = self.columns
         self.ids.table_floor.data = table_data
         
     def get_products(self): 
